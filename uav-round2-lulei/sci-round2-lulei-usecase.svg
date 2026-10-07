@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="560" viewBox="0 0 880 560" role="img" aria-labelledby="title desc">
+  <title id="title">卢磊第二轮局部用例图：Android 发现并连接一台无人机</title>
+  <desc id="desc">App 现场使用者通过 Android 地面站连接无人机、发现局域网内设备、切换已连接设备；机载无人机系统作为外部交付系统位于系统边界之外。参与者具体角色与权限待确认。</desc>
+  <rect width="880" height="560" fill="#f7f9fc"/>
+
+  <text x="36" y="40" fill="#172b4d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="21" font-weight="700">局部用例图：Android 发现并连接一台无人机</text>
+  <text x="36" y="64" fill="#5a6f8d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="13.5">第二轮 · 卢磊 ｜ 依据：需求书 §3.4.1【冷启动引导】【设备管理 E1/E2】 ｜ 原型：badbotai.github.io/uav-inspection</text>
+
+  <!-- 系统边界 -->
+  <rect x="246" y="88" width="376" height="368" rx="10" fill="#ffffff" stroke="#6683ad" stroke-width="2"/>
+  <text x="266" y="118" fill="#284a76" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="16" font-weight="600">空间计算与多模态交互平台</text>
+  <text x="266" y="139" fill="#5a6f8d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="14">Android 地面站（本图只画这一局部）</text>
+
+  <!-- 主参与者的关联线 -->
+  <line x1="146" y1="268" x2="286" y2="205" stroke="#64748b" stroke-width="2"/>
+  <line x1="146" y1="268" x2="286" y2="292" stroke="#64748b" stroke-width="2"/>
+  <line x1="146" y1="268" x2="286" y2="379" stroke="#64748b" stroke-width="2"/>
+
+  <!-- 外部系统的关联线 -->
+  <line x1="756" y1="300" x2="592" y2="205" stroke="#b08a3e" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="756" y1="300" x2="592" y2="292" stroke="#b08a3e" stroke-width="2" stroke-dasharray="6 4"/>
+
+  <!-- 主参与者 -->
+  <circle cx="118" cy="212" r="20" fill="#ffffff" stroke="#334155" stroke-width="2.5"/>
+  <line x1="118" y1="232" x2="118" y2="298" stroke="#334155" stroke-width="2.5"/>
+  <line x1="89" y1="268" x2="147" y2="268" stroke="#334155" stroke-width="2.5"/>
+  <line x1="118" y1="298" x2="93" y2="334" stroke="#334155" stroke-width="2.5"/>
+  <line x1="118" y1="298" x2="143" y2="334" stroke="#334155" stroke-width="2.5"/>
+  <text x="118" y="364" text-anchor="middle" fill="#172b4d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="16">App 现场使用者</text>
+  <text x="118" y="386" text-anchor="middle" fill="#5a6f8d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="14">（具体角色待确认）</text>
+
+  <!-- 用户目标 -->
+  <ellipse cx="440" cy="205" rx="152" ry="32" fill="#e9f2ff" stroke="#4575b5" stroke-width="2"/>
+  <text x="440" y="212" text-anchor="middle" fill="#172b4d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="18">连接无人机</text>
+
+  <ellipse cx="440" cy="292" rx="152" ry="32" fill="#e9f2ff" stroke="#4575b5" stroke-width="2"/>
+  <text x="440" y="299" text-anchor="middle" fill="#172b4d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="18">发现局域网内设备</text>
+
+  <ellipse cx="440" cy="379" rx="152" ry="32" fill="#e9f2ff" stroke="#4575b5" stroke-width="2"/>
+  <text x="440" y="386" text-anchor="middle" fill="#172b4d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="18">切换已连接设备</text>
+
+  <!-- 外部参与者 -->
+  <circle cx="786" cy="246" r="20" fill="#ffffff" stroke="#a9843a" stroke-width="2.5"/>
+  <line x1="786" y1="266" x2="786" y2="332" stroke="#a9843a" stroke-width="2.5"/>
+  <line x1="757" y1="302" x2="815" y2="302" stroke="#a9843a" stroke-width="2.5"/>
+  <line x1="786" y1="332" x2="761" y2="368" stroke="#a9843a" stroke-width="2.5"/>
+  <line x1="786" y1="332" x2="811" y2="368" stroke="#a9843a" stroke-width="2.5"/>
+  <text x="786" y="398" text-anchor="middle" fill="#172b4d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="16">机载无人机系统</text>
+  <text x="786" y="420" text-anchor="middle" fill="#8a6d33" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="14">（外部交付，边界之外）</text>
+
+  <!-- 说明 -->
+  <rect x="36" y="452" width="808" height="86" rx="8" fill="#ffffff" stroke="#d7e0ec" stroke-width="1.5"/>
+  <text x="52" y="474" fill="#5a6f8d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="13">椭圆＝使用者想让系统完成的目标；方框＝系统边界；连线＝参与者参与该目标。</text>
+  <text x="52" y="496" fill="#5a6f8d" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="13">「未发现设备」「连接失败」「设备被占用」「巡检任务执行中禁止切换」是分支与业务规则，不画成用例；App 页面与按钮不是参与者。</text>
+  <text x="52" y="518" fill="#8a6d33" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="13">虚线＝外部系统参与（本图为发现／绑定设备时的局域网交互）；参与者名称与连接、切换权限待确认。</text>
+</svg>
