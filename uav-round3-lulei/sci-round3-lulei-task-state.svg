@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 940" width="1280" height="940" font-family="'Microsoft YaHei','PingFang SC',system-ui,sans-serif" role="img">
+<title>App 侧巡检任务状态机迁移图（初版）</title>
+<desc>表达 App 侧巡检任务从准备、自检、执行、返航到完成/中断的业务状态与迁移条件。</desc>
+<defs>
+<marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#475569" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<marker id="ar-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#3B6D11" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<marker id="ar-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#A32D2D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<marker id="ar-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#854F0B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="1280" height="940" fill="#FFFFFF"/>
+<text x="40" y="42" font-size="20" font-weight="700" fill="#0F172A">App 侧巡检任务状态机迁移图（第三轮初版）</text>
+<text x="40" y="68" font-size="13.5" fill="#64748B">围绕一次巡检的准备 → 自检 → 执行 → 返航 → 完成／中断；箭头为触发事件与条件。仅表达 App 业务状态与机载反馈，不涉及飞控内部实现。</text>
+<line x1="40" y1="82" x2="1240" y2="82" stroke="#E2E8F0" stroke-width="1"/>
+
+<text x="40" y="108" font-size="12.5" font-weight="700" fill="#334155">图例</text>
+<rect x="86" y="96" width="16" height="14" rx="3" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="108" y="108" font-size="12.5" fill="#334155">App 业务状态</text>
+<rect x="216" y="96" width="16" height="14" rx="3" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.7"/>
+<text x="238" y="108" font-size="12.5" fill="#334155">机载回传（App 只展示）</text>
+<rect x="404" y="96" width="16" height="14" rx="3" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.7"/>
+<text x="426" y="108" font-size="12.5" fill="#334155">正常路径</text>
+<rect x="514" y="96" width="16" height="14" rx="3" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.7"/>
+<text x="536" y="108" font-size="12.5" fill="#334155">异常／中断</text>
+<rect x="628" y="96" width="16" height="14" rx="7" fill="#F1F5F9" stroke="#475569" stroke-width="0.7"/>
+<text x="650" y="108" font-size="12.5" fill="#334155">终态</text>
+<rect x="704" y="96" width="16" height="14" rx="3" fill="#FFFFFF" stroke="#94A3B8" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="726" y="108" font-size="12.5" fill="#334155">待确认规则</text>
+
+<text x="40" y="150" font-size="13.5" font-weight="700" fill="#0F172A">一、开始与准备（连接、场景与航线选择）</text>
+
+<circle cx="66" cy="200" r="12" fill="#0F172A"/>
+
+<rect x="96" y="172" width="186" height="58" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="189" y="194" font-size="14.5" font-weight="700" fill="#0C447C" text-anchor="middle" dominant-baseline="middle">未就绪</text>
+<text x="189" y="214" font-size="12.5" fill="#185FA5" text-anchor="middle" dominant-baseline="middle">未连接／未选场景·航线</text>
+
+<rect x="348" y="172" width="200" height="58" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="448" y="194" font-size="14.5" font-weight="700" fill="#0C447C" text-anchor="middle" dominant-baseline="middle">设备已连接</text>
+<text x="448" y="214" font-size="12.5" fill="#185FA5" text-anchor="middle" dominant-baseline="middle">本机唯一连接一台无人机</text>
+
+<rect x="648" y="172" width="230" height="58" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="763" y="194" font-size="14.5" font-weight="700" fill="#0C447C" text-anchor="middle" dominant-baseline="middle">待起飞确认</text>
+<text x="763" y="214" font-size="12.5" fill="#185FA5" text-anchor="middle" dominant-baseline="middle">场景+航线已选，起飞条件校验</text>
+
+<path d="M282 201 L348 201" fill="none" stroke="#3B6D11" stroke-width="1.6" marker-end="url(#ar-g)"/>
+<text x="315" y="190" font-size="11.5" fill="#3B6D11" text-anchor="middle">发现并连接成功</text>
+
+<path d="M548 201 L648 201" fill="none" stroke="#3B6D11" stroke-width="1.6" marker-end="url(#ar-g)"/>
+<text x="598" y="188" font-size="11.5" fill="#3B6D11" text-anchor="middle">先选场景→再选航线</text>
+
+<text x="40" y="298" font-size="13.5" font-weight="700" fill="#0F172A">二、起飞前自检与人工确认</text>
+
+<rect x="648" y="322" width="230" height="76" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.7"/>
+<text x="763" y="348" font-size="14.5" font-weight="700" fill="#633806" text-anchor="middle" dominant-baseline="middle">起飞前自检（机载回传）</text>
+<text x="763" y="368" font-size="12.5" fill="#854F0B" text-anchor="middle" dominant-baseline="middle">一次性整包回传：通过／失败+原因</text>
+<text x="763" y="386" font-size="12.5" fill="#854F0B" text-anchor="middle" dominant-baseline="middle">＋人工确认场景/航线匹配</text>
+
+<path d="M763 230 L763 322" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="775" y="280" font-size="11.5" fill="#475569">下发启动校验</text>
+
+<path d="M878 360 L1000 360" fill="none" stroke="#A32D2D" stroke-width="1.6" marker-end="url(#ar-r)"/>
+<text x="939" y="349" font-size="11.5" fill="#A32D2D" text-anchor="middle">自检未通过·阻止起飞</text>
+
+<rect x="1000" y="330" width="200" height="60" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.7"/>
+<text x="1100" y="352" font-size="14.5" font-weight="700" fill="#791F1F" text-anchor="middle" dominant-baseline="middle">自检失败</text>
+<text x="1100" y="372" font-size="12.5" fill="#A32D2D" text-anchor="middle" dominant-baseline="middle">显示失败原因／重检入口</text>
+
+<path d="M1000 358 C 940 358, 910 358, 880 358" fill="none" stroke="#3B6D11" stroke-width="1.6" marker-end="url(#ar-g)"/>
+<text x="940" y="430" font-size="11.5" fill="#3B6D11" text-anchor="middle">点“重新自检”</text>
+
+<rect x="348" y="322" width="230" height="76" rx="8" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="463" y="346" font-size="13" font-weight="700" fill="#475569" text-anchor="middle" dominant-baseline="middle">待确认</text>
+<text x="463" y="366" font-size="11.5" fill="#64748B" text-anchor="middle" dominant-baseline="middle">自检超时阈值、重检次数上限</text>
+<text x="463" y="384" font-size="11.5" fill="#64748B" text-anchor="middle" dominant-baseline="middle">需求未明确（SCI-Q）</text>
+
+<text x="40" y="530" font-size="13.5" font-weight="700" fill="#0F172A">三、起飞倒计时与执行</text>
+
+<rect x="648" y="556" width="230" height="60" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="763" y="578" font-size="14.5" font-weight="700" fill="#0C447C" text-anchor="middle" dominant-baseline="middle">起飞倒计时</text>
+<text x="763" y="598" font-size="12.5" fill="#185FA5" text-anchor="middle" dominant-baseline="middle">条件齐备，可取消起飞（二次确认）</text>
+
+<rect x="960" y="556" width="240" height="60" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="1080" y="578" font-size="14.5" font-weight="700" fill="#0C447C" text-anchor="middle" dominant-baseline="middle">执行中</text>
+<text x="1080" y="598" font-size="12.5" fill="#185FA5" text-anchor="middle" dominant-baseline="middle">按航线自动巡检·禁止切换设备</text>
+
+<path d="M763 398 L763 556" fill="none" stroke="#3B6D11" stroke-width="1.6" marker-end="url(#ar-g)"/>
+<text x="775" y="486" font-size="11.5" fill="#3B6D11">自检通过＋人工确认匹配</text>
+
+<path d="M878 586 L960 586" fill="none" stroke="#3B6D11" stroke-width="1.6" marker-end="url(#ar-g)"/>
+<text x="919" y="575" font-size="11.5" fill="#3B6D11" text-anchor="middle">倒计时结束·起飞</text>
+
+<path d="M648 601 C 560 601, 560 466, 648 420" fill="none" stroke="#A32D2D" stroke-width="1.6" marker-end="url(#ar-r)"/>
+<text x="470" y="516" font-size="11.5" fill="#A32D2D">取消起飞（二次确认）</text>
+
+<rect x="300" y="676" width="300" height="76" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.7"/>
+<text x="450" y="700" font-size="14.5" font-weight="700" fill="#633806" text-anchor="middle" dominant-baseline="middle">执行中的机载分支（App 只展示）</text>
+<text x="450" y="720" font-size="12" fill="#854F0B" text-anchor="middle" dominant-baseline="middle">停障悬停／超时返航／低电自动返航（≤12%）</text>
+<text x="450" y="738" font-size="12" fill="#854F0B" text-anchor="middle" dominant-baseline="middle">定位丢失原地迫降／失联超时／遥控器介入</text>
+
+<path d="M960 626 C 780 690, 660 700, 618 706" fill="none" stroke="#854F0B" stroke-width="1.6" marker-end="url(#ar-a)"/>
+
+<text x="40" y="800" font-size="13.5" font-weight="700" fill="#0F172A">四、返航与终态</text>
+
+<rect x="960" y="760" width="240" height="62" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="1080" y="784" font-size="14.5" font-weight="700" fill="#0C447C" text-anchor="middle" dominant-baseline="middle">返航中</text>
+<text x="1080" y="804" font-size="12.5" fill="#185FA5" text-anchor="middle" dominant-baseline="middle">沿原航线回溯·禁止切换设备</text>
+
+<rect x="620" y="760" width="230" height="62" rx="7" fill="#F1F5F9" stroke="#475569" stroke-width="0.8"/>
+<text x="735" y="784" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="middle" dominant-baseline="middle">已完成</text>
+<text x="735" y="804" font-size="12.5" fill="#334155" text-anchor="middle" dominant-baseline="middle">落地·可查看成果／取同步码</text>
+
+<rect x="330" y="760" width="240" height="62" rx="7" fill="#F1F5F9" stroke="#475569" stroke-width="0.8"/>
+<text x="450" y="784" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="middle" dominant-baseline="middle">已中断</text>
+<text x="450" y="804" font-size="12.5" fill="#334155" text-anchor="middle" dominant-baseline="middle">已飞数据保留·生成部分结果</text>
+
+<path d="M1080 616 L1080 760" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="1092" y="700" font-size="11.5" fill="#475569">返航指令／自动返航</text>
+
+<path d="M960 791 L850 791" fill="none" stroke="#3B6D11" stroke-width="1.6" marker-end="url(#ar-g)"/>
+<text x="905" y="780" font-size="11.5" fill="#3B6D11" text-anchor="middle">落地确认</text>
+
+<path d="M620 791 L570 791" fill="none" stroke="#475569" stroke-width="1.6" marker-end="url(#ar)"/>
+
+<path d="M618 714 C 570 714, 560 760, 560 791" fill="none" stroke="#A32D2D" stroke-width="1.6" marker-end="url(#ar-r)"/>
+
+<text x="40" y="890" font-size="11.5" fill="#64748B">注：虚线框为尚无需求依据、需在群内确认的规则。请求发出 ≠ 机载已执行；巡检中禁止切换设备；断开连接 ≠ 任务结束（可重连后继续接收机载状态）。</text>
+<text x="40" y="910" font-size="11.5" fill="#64748B">设备页“飞行中”与需求书“巡检中”词表不一致，待统一（SCI-Q）。</text>
+</svg>
